@@ -37,14 +37,14 @@ function placeDot(){ const nav=document.querySelector('.pillnav'), d=nav&&nav.qu
       progs:['Illustrator','Photoshop','After Effects','Figma','Resolume Arena'],
       rows:[
         {cls:'fb-full', items:[{src:'img/memorias/grupo.jpg', alt:'Foto grupal en la sala al cierre del congreso'}]},
-        {cls:'fb-3', items:[{src:'img/memorias/diarios-1.jpg', alt:'Visitantes frente a las proyecciones de diarios de época'},{src:'img/memorias/diarios-2.jpg', alt:'Proyección de archivo con paisaje y siluetas de visitantes'},{src:'img/memorias/diarios-3.jpg', alt:'Detalle de tapas de diarios proyectadas en la esquina de la sala'}]},
+        {cls:'fb-3', items:[{src:'img/memorias/diarios-1.jpg', alt:'Visitantes frente a las proyecciones de diarios de época'},{src:'img/memorias/diarios-2.jpg', alt:'Primera escena: Casa Mariani-Teruggi'},{src:'img/memorias/diarios-3.jpg', alt:'Detalle de tapas de diarios proyectadas en la esquina de la sala'}]},
         {cls:'fb-1 fb-vidloop', items:[{video:'img/memorias/memorias-recorrido.mp4', poster:'img/memorias/memorias-recorrido-poster.jpg', alt:'Recorrido por las escenas de Memorias del espacio'}]},
-        {cls:'fb-3', items:[{src:'img/memorias/particulas-1.jpg', alt:'Visitantes entre proyecciones de partículas luminosas'},{src:'img/memorias/particulas-2.jpg', alt:'Sala oscura con nube de partículas'},{src:'img/memorias/particulas-3.jpg', alt:'Público recorriendo la proyección de fachadas de archivo'}]},
+        {cls:'fb-3', items:[{src:'img/memorias/particulas-1.jpg', alt:'Visitantes entre proyecciones de partículas luminosas'},{src:'img/memorias/particulas-2.jpg', alt:'Sala oscura: primera escena de la Casa Mariani-Teruggi'},{src:'img/memorias/particulas-3.jpg', alt:'Primera escena: Casa Mariani-Teruggi'}]},
         {cls:'fb-3', items:[{src:'img/memorias/madres.jpg', alt:'Proyección de las Madres de Plaza de Mayo rodeando la sala'},{src:'img/memorias/sala-roja.jpg', alt:'Escena en rojo con visitantes en silueta'},{src:'img/memorias/casa.jpg', alt:'Proyección del interior de una casa'}]},
         {note:['Proceso','','Cabina de control y operación en vivo']},
         {cls:'fb-3', items:[{src:'img/memorias/cabina-1.jpg', alt:'Monitor con el patch de TouchDesigner frente a la sala'},{src:'img/memorias/cabina-2.jpg', alt:'Operación en vivo desde la cabina'},{src:'img/memorias/cabina-3.jpg', alt:'Cabina de control durante la experiencia'}]},
         {cls:'fb-full', items:[{src:'img/memorias/entrada.jpg', alt:'Ingreso a la sala azul con el título Memorias del espacio proyectado'}]},
-        {cls:'fb-cierre', items:[{src:'img/memorias/lara-creditos.jpg', alt:'Lara frente a los créditos proyectados de la experiencia'},{src:'img/memorias/equipo.jpg', alt:'El equipo de diseño frente al título proyectado'},{src:'img/memorias/equipo-creditos.jpg', alt:'Parte del equipo de diseño junto a los créditos proyectados'}]},
+        {cls:'fb-cierre', items:[{src:'img/memorias/lara-creditos.jpg', alt:'Créditos de la experiencia proyectados en la sala'},{src:'img/memorias/equipo.jpg', alt:'El equipo de diseño frente al título proyectado'},{src:'img/memorias/equipo-creditos.jpg', alt:'Parte del equipo de diseño junto a los créditos proyectados'}]},
         {press:[['Espacios que guardan la memoria: una experiencia inmersiva reconstruye las huellas de la dictadura','https://www.lanacion.com.ar/cultura/espacios-que-guardan-la-memoria-una-experiencia-inmersiva-reconstruye-las-huellas-de-la-dictadura-nid13102026/','La Nación · 13 Oct 2026'],['“Memorias del espacio”, experiencia inmersiva','https://www.pagina12.com.ar/2026/09/15/memorias-del-espacio-experiencia-inmersiva/','Página/12 · 15 Sep 2026']]},
       ]},
     {id:'tesis-agronomia', cardDesc:'Tesis: sistema modular que lee el predio de Agronomía como un organismo vivo.', t:'Módulo Vivo', logo:'img/tesis/modulo-vivo-logo.png', logoCls:'logo-inline',
@@ -623,6 +623,20 @@ function placeDot(){ const nav=document.querySelector('.pillnav'), d=nav&&nav.qu
 
   /* ——— Visor de imágenes del proyecto (compu y celular) ——— */
   let lb = null, lbList = [], lbI = 0;
+  // descripciones cortas para el visor (en la ficha se mantiene el texto completo)
+  const LB_SHORT = {
+    'Corredor': 'Estructura de acero y chapa acanalada con enredaderas que crecen sobre ella.',
+    'Baldosas': 'Baldosas que replican la trama y marcan los caminos peatonales del predio.',
+    'Un túnel': 'El tren elevado separa las vías del paso peatonal y vehicular.',
+    'Una feria': 'Accesorios para montar la feria sobre la estructura, sin trasladar gazebos.',
+    'Señalética': 'Carteles de paseos, ingreso, zonas y mapa del predio.',
+    'Libro': 'Tapa y doble página del libro sobre la historia de la Facultad de Agronomía.',
+    'App móvil': 'App para recorrer Agronomía: mapa, recorridos guiados, flora y eventos.',
+    'Revista editorial': 'Cuatro ediciones con color propio: Performance, Musical, Gráfica y Organización.',
+    'Regalos semanales': 'Objetos encartados que citan al juguete de kiosco, el CD y el fanzine.',
+    'La revistería': 'Revistería intervenida en el espacio público que reúne revistas y objetos.',
+    'Rampa publicitaria': 'Rampa de ingreso con la campaña “Que nada te detenga”.'
+  };
   function lbShow(i) {
     lbI = (i + lbList.length) % lbList.length;
     const im = lbList[lbI], st = lb.querySelector('.lb-stage');
@@ -638,8 +652,8 @@ function placeDot(){ const nav=document.querySelector('.pillnav'), d=nav&&nav.qu
     const label = im.alt || im.getAttribute('aria-label') || '';
     lb.querySelector('.lb-n').textContent = `${lbI + 1} / ${lbList.length}`;
     const cap = lb.querySelector('.lb-cap');
-    if (im.dataset.capT) { cap.classList.add('rich'); cap.innerHTML = `<b>${esc(im.dataset.capT)}</b>${im.dataset.capS ? `<small>${esc(im.dataset.capS)}</small>` : ''}<span>${esc(im.dataset.cap)}</span>`; }
-    else { cap.classList.remove('rich'); cap.textContent = label; }
+    if (im.dataset.capT) { cap.classList.add('rich'); cap.innerHTML = `<b>${esc(im.dataset.capT)}</b><span>${esc(LB_SHORT[im.dataset.capT] || im.dataset.cap)}</span>`; }
+    else { cap.classList.add('rich'); cap.innerHTML = label ? `<b></b><span>${esc(label)}</span>` : ''; }
   }
   function lbOpen(img) {
     lbList = [...pp.querySelectorAll('.pv-media img, .pv-media video')];
