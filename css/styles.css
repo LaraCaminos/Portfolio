@@ -931,12 +931,5 @@
   .c-left .c-links .loc-t .av{display:block}
   .c-left .c-links .val{font-size:19px!important}
 }
-@media (max-width:900px){#reconocimientos .cv-rec>div:first-child{padding-bottom:0}#reconocimientos .cv-rec>div+div{border-top:0;padding-top:0}#reconocimientos .cv-rec>div+div .aw-row:first-of-type{border-top:var(--hair) solid var(--line)}}
-/* Botones de CV: misma tipografía que las píldoras y botones de la web (Inder) */
-.cv-btn,.c-links li.c-cv .acts2 .act{font-family:var(--f-pill)!important;text-transform:none!important;letter-spacing:.01em}
-@media (max-width:640px){
-  #sobre-mi .cv-acts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:16px;margin-bottom:22px}
-  #sobre-mi .cv-btn{justify-content:center;padding:.8em .6em;font-size:15px}
-}
 .fb-igl img{box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid #eee}
 .fb-full.fb-van figure{width:calc(100% - 2 * var(--gutter))}.fb-van img{width:100%;height:auto;object-fit:contain;background:none}
