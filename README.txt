@@ -6,7 +6,7 @@ Contenido
 - css/styles.css   → todos los estilos (colores, tipografías, tamaños, animaciones, versión celular)
 - js/loader.js     → pantalla de carga (nombre, especialidades y porcentaje)
 - js/logos.js      → logos de los programas (imágenes embebidas, no hace falta tocarlo)
-- js/main.js       → todo lo demás: datos y textos de los proyectos, tarjetas, listado, fichas, cintas, formulario
+- js/main.js       → todo lo demás: datos y textos de los proyectos, tarjetas, listado, fichas y cintas
 - img/             → imágenes y videos de los proyectos
 - cv/              → el CV en PDF
 
@@ -26,10 +26,6 @@ Publicarlo gratis (GitHub Pages)
 3. Settings → Pages → Source: "Deploy from a branch" → Branch: main / (root) → Save.
 4. En 1–2 minutos queda en https://TU-USUARIO.github.io/portfolio/
 
-Formulario de contacto
-- Buscá en js/main.js la línea: const FORM_ENDPOINT = '';
-- Creá un formulario gratis en formspree.io (o web3forms.com), copiá la URL que te dan y pegala entre las comillas.
-  Mientras esté vacío, el formulario funciona como vista previa y no envía nada.
 
 Notas
 - Las tipografías vienen de Google Fonts: se necesita internet para verlas bien.

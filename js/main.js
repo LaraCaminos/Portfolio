@@ -803,37 +803,6 @@ function placeDot(){ const nav=document.querySelector('.pillnav'), d=nav&&nav.qu
     f.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
   }));
 
-  /* ——— Formulario ———
-     En GitHub Pages: creá un formulario gratis en Formspree o Web3Forms
-     y pegá acá la URL que te dan. Mientras esté vacío, funciona como vista previa. */
-  const FORM_ENDPOINT = '';
-  const form = document.getElementById('cform');
-  const note = document.getElementById('f-note');
-  const setErr = (id, msg) => document.getElementById(id).textContent = msg;
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name = form.nombre.value.trim(), mail = form.email.value.trim(), msg = form.mensaje.value.trim();
-    setErr('e-name', name ? '' : 'Escribí tu nombre.');
-    setErr('e-mail', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail) ? '' : 'Revisá el email: falta la @ o el dominio.');
-    setErr('e-msg', msg ? '' : 'Contame algo del proyecto.');
-    if (!name || !msg || document.getElementById('e-mail').textContent) return;
-    note.classList.remove('ok');
-    if (!FORM_ENDPOINT) {
-      note.textContent = 'Vista previa: el formulario está listo, pero todavía no está conectado. El envío se activa al publicar la página en GitHub.';
-      return;
-    }
-    const btn = form.querySelector('.send');
-    btn.disabled = true; note.textContent = 'Enviando…';
-    try {
-      const r = await fetch(FORM_ENDPOINT, {method:'POST', body:new FormData(form), headers:{Accept:'application/json'}});
-      if (!r.ok) throw 0;
-      form.reset(); note.classList.add('ok');
-      note.textContent = '¡Gracias! Recibí tu mensaje y te respondo pronto.';
-    } catch (_) {
-      note.textContent = 'No se pudo enviar. Probá de nuevo o escribime directo a ' + document.getElementById('mail').textContent;
-    } finally { btn.disabled = false; }
-  });
-
   /* ——— Copiar email ——— */
   const btn = document.getElementById('copy');
   btn.addEventListener('click', () => {

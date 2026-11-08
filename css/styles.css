@@ -904,5 +904,32 @@
 .lb-cap.rich b:empty{display:none}
 .lb-cap.rich span{grid-column:auto;text-wrap:balance;min-width:0;max-width:100%;flex:0 1 auto}
 @media (max-width:560px){.lb-cap,.lb-cap.rich{column-gap:10px}}
+.about .bio-m{display:none}@media (max-width:640px){.about .bio-d{display:none}.about .bio-m{display:block}}
+/* Conversemos sin formulario: un solo contenedor; datos en 2 columnas × 2 filas y el CV a la derecha ocupando las dos filas */
+.c-grid{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"top" "left"!important;row-gap:clamp(18px,1.8vw,30px)!important}
+.c-left{padding:clamp(24px,2.6vw,44px)!important}
+.c-left .c-links{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-areas:"em ce cv" "li be cv" "ba ba ba"!important;column-gap:clamp(28px,3.4vw,64px)!important;row-gap:0;border-top:0!important}
+.c-left .c-links li,.c-left .c-links li:nth-child(-n+2),.c-left .c-links li:last-child{grid-column:auto!important;display:grid;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"lbl act" "val val"!important;grid-template-rows:auto auto!important;align-content:start;row-gap:clamp(10px,1vw,16px);padding:clamp(18px,1.8vw,28px) 0!important;border-top:0!important;border-bottom:0!important}
+.c-left .c-links li:nth-child(1){grid-area:em!important}.c-left .c-links li:nth-child(2){grid-area:ce!important}.c-left .c-links li:nth-child(3){grid-area:li!important}.c-left .c-links li:nth-child(4){grid-area:be!important}
+.c-left .c-links li:nth-child(1),.c-left .c-links li:nth-child(2){border-bottom:1px solid var(--line-strong)!important;padding-top:0!important}
+.c-left .c-links li.c-cv{grid-area:cv!important;grid-template-areas:"lbl" "acts"!important;grid-template-columns:minmax(0,1fr)!important;align-content:start;padding:0 0 0 clamp(28px,3.4vw,64px)!important;border-left:1px solid var(--line-strong)!important}
+.c-left .c-links li.c-cv{grid-template-rows:auto 1fr!important;align-content:stretch!important}.c-left .c-links li.c-cv .acts2{grid-area:acts!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:1fr 1fr;gap:12px;justify-self:stretch!important;align-self:stretch!important}.c-left .c-links li.c-cv .acts2 .act{display:flex;align-items:center;justify-content:center;gap:.4em;border-radius:12px!important}
+.c-left .c-links li.c-cv .acts2 .act{font-size:clamp(14px,1vw,16px);padding:1.25em 1.1em}
+.c-left .c-links li.c-base{grid-area:ba!important;grid-template-areas:"lbl val"!important;grid-template-columns:auto minmax(0,1fr)!important;column-gap:20px;align-items:baseline;border-top:1px solid var(--line-strong)!important;padding:clamp(14px,1.4vw,22px) 0 0!important;margin-top:clamp(18px,1.8vw,28px)}
+.c-left .c-links .lbl{font-size:clamp(11px,.75vw,13px)}
+.c-left .c-links .act{font-size:clamp(11px,.75vw,13px);align-self:start!important}
+.c-left .c-links .val{font-size:clamp(18px,1.5vw,26px)!important;padding:0!important;white-space:normal;overflow-wrap:anywhere}
+.c-left .c-links li.c-base .val{font-size:clamp(15px,1.1vw,19px)!important}
+.c-left .c-links .loc-t .av{white-space:normal!important;font-size:inherit!important}
+@media (max-width:900px){
+  .c-left .c-links{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"em" "ce" "li" "be" "cv" "ba"!important}
+  .c-left .c-links li,.c-left .c-links li:nth-child(1),.c-left .c-links li:nth-child(2),.c-left .c-links li.c-cv{padding:16px 0!important;border:0!important;border-bottom:1px solid var(--line-strong)!important;margin:0}
+  .c-left .c-links li:first-child{padding-top:0!important}
+  .c-left .c-links li.c-cv .acts2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+  .c-left .c-links li.c-base{grid-template-areas:"lbl" "val"!important;grid-template-columns:minmax(0,1fr)!important;border:0!important;padding:16px 0 0!important;margin-top:0!important}
+  .c-left .c-links li.c-cv .acts2{grid-template-rows:auto!important}.c-left .c-links li.c-cv .acts2 .act{font-size:13.5px;padding:1.1em .4em;white-space:nowrap}.c-left .c-links li.c-cv .acts2 .act{border-radius:20px!important}
+  .c-left .c-links .loc-t .av{display:block}
+  .c-left .c-links .val{font-size:19px!important}
+}
 .fb-igl img{box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid #eee}
 .fb-full.fb-van figure{width:calc(100% - 2 * var(--gutter))}.fb-van img{width:100%;height:auto;object-fit:contain;background:none}
